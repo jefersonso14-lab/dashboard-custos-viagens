@@ -1,0 +1,308 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dashboard de Custos de Viagens — Broadtec | V20</title><style>
+:root{--red:#e21d2b;--navy:#132238;--ink:#17202a;--muted:#6b7280;--line:#e7eaf0;--bg:#f5f7fa;--white:#fff;--shadow:0 8px 30px rgba(16,24,40,.06)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+.header{height:68px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 42px;gap:42px;position:sticky;top:0;z-index:20}.logo{width:178px;height:auto;display:block}.nav{height:100%;display:flex;gap:28px}.nav a{display:flex;align-items:center;color:#667085;font-size:12px;font-weight:550;position:relative;cursor:pointer}.nav a.active{color:var(--ink)}.nav a.active:after{content:"";position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--red)}.user{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:11px}.avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#172a43;color:#fff;font-size:11px;font-weight:750}.user b{display:block;font-size:12px}.user span{color:#98a2b3}
+.hero{min-height:185px;background:linear-gradient(105deg,#0c1828,#162a40 55%,#1c344d);position:relative;overflow:hidden;color:#fff;padding:34px 5%}.hero:after{content:"✈";position:absolute;right:10%;top:-52px;font-size:260px;opacity:.045}.eyebrow{font-size:10px;letter-spacing:.17em;font-weight:800;color:#f4a3a8}.hero h1{margin:6px 0 5px;font-size:31px}.hero p{margin:0;color:#dce3eb;font-size:13px}.hero-note{position:absolute;right:5%;top:60px;border-left:3px solid var(--red);padding-left:12px;font-weight:750}
+.main{max-width:1450px;margin:auto;padding:14px 24px 45px}.panel{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+.import{display:grid;grid-template-columns:260px 1fr;align-items:center;min-height:96px;padding:15px 17px;gap:18px}.import-copy{display:flex;align-items:center;gap:13px}.round,.section-icon{width:46px;height:46px;border-radius:14px;background:#fff1f2;color:var(--red);display:grid;place-items:center;font-size:20px}.import h3{margin:0;font-size:14px}.import p,.section-head p{margin:4px 0 0;color:var(--muted);font-size:11px}.drop{height:65px;border:1px dashed #c8d0da;border-radius:10px;display:flex;align-items:center;justify-content:center;gap:12px;color:#7b8491;font-size:11px;cursor:pointer}.drop:hover,.drop.drag{border-color:var(--red);background:#fffafb}.drop:focus{outline:3px solid #ffe1e4;outline-offset:1px}.drop .btn{pointer-events:auto}.drop strong{display:block;color:#475467;font-weight:600}.drop small{font-size:10px}
+.section{margin-top:13px}.section-head{display:flex;align-items:center;gap:12px;padding:15px 17px}.section-copy{flex:1}.section-head h2{font-size:15px;margin:0}.actions{display:flex;gap:8px}.btn{border:1px solid #cfd5dd;background:#fff;border-radius:8px;padding:8px 12px;font-size:10px;font-weight:650;color:#344054;cursor:pointer}.btn:hover{background:#f8fafc}.btn.primary{background:var(--red);color:#fff;border-color:var(--red)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:0 12px 12px}.kpi{padding:15px;border:1px solid #eef0f3;border-radius:11px}.kpi-top{display:flex;justify-content:space-between}.kpi-label{font-size:10px;color:#667085;text-transform:uppercase}.kpi-icon{color:var(--red);background:#fff0f1;width:29px;height:29px;border-radius:9px;display:grid;place-items:center}.kpi-value{font-size:23px;font-weight:780;margin-top:9px}.kpi-sub{font-size:9px;color:#98a2b3;margin-top:3px}
+.filters{display:grid;grid-template-columns:1.2fr .8fr 1fr .9fr .9fr 1.5fr auto;gap:10px;padding:0 17px 17px}.field label{display:block;font-size:9px;font-weight:650;color:#475467;margin-bottom:5px}.field input,.field select{height:34px;width:100%;border:1px solid #d5dae1;background:#fff;border-radius:8px;padding:0 9px;color:#475467;font-size:10px;outline:none}.field input:focus{border-color:#98a2b3;box-shadow:0 0 0 3px #f2f4f7}
+.analytics{display:grid;grid-template-columns:1.15fr 1fr .95fr;gap:13px}.chart{padding:16px;min-height:285px}.chart-title{font-size:14px;font-weight:750}.chart-sub{font-size:10px;color:var(--muted);margin:3px 0 18px}.os-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.os-card{border:1px solid #edf0f3;border-radius:10px;padding:12px;background:#fff;cursor:pointer}.os-card:hover{border-color:#cbd2db}.os-head{display:flex;justify-content:space-between;font-size:10px;color:#667085}.dot{width:7px;height:7px;background:#24a148;border-radius:50%}.os-value{font-size:16px;font-weight:760;margin:11px 0 9px}.mini-track,.track{height:6px;background:#edf0f3;border-radius:99px;overflow:hidden}.mini-track i{display:block;height:100%;background:linear-gradient(90deg,var(--red),#f45c66)}.os-foot{display:flex;justify-content:space-between;color:#98a2b3;font-size:8px;margin-top:8px}.cat-row{margin:11px 0}.cat-name{display:flex;justify-content:space-between;font-size:10px}.track{margin-top:5px}.track i{display:block;height:100%;background:var(--navy)}.cat-value{font-size:9px;color:#98a2b3;margin-top:4px}.expense{display:flex;align-items:center;gap:9px;padding:10px 0;border-bottom:1px solid #eef0f3}.rank{width:27px;height:27px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-size:10px;font-weight:800}.expense-main{flex:1}.expense-main b{display:block;font-size:10px}.expense-main span{font-size:9px;color:#98a2b3}.expense-val{font-size:10px;font-weight:750}
+.detail{margin-top:13px;padding-bottom:8px}.detail-head{display:flex;align-items:center;padding:15px 17px 8px;gap:12px}.table-wrap{overflow:auto;padding:0 11px}table{width:100%;border-collapse:collapse;font-size:10px;white-space:nowrap}th{background:#fafbfc;color:#667085;font-size:9px}th,td{padding:11px 8px;border-bottom:1px solid #edf0f3;text-align:left}.status{font-size:9px;padding:4px 7px;border-radius:99px;font-weight:700}.status.ok{color:#137333;background:#ecfdf3}.status.warn{color:#b54708;background:#fff7ed}.toast{position:fixed;right:22px;bottom:22px;background:#17202a;color:#fff;padding:11px 15px;border-radius:9px;font-size:11px;opacity:0;transform:translateY(10px);transition:.2s;z-index:50}.toast.show{opacity:1;transform:none}
+@media(max-width:1050px){.analytics{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr 1fr}.import{grid-template-columns:1fr}}@media(max-width:650px){.header{padding:10px 15px;flex-wrap:wrap;height:auto}.logo{width:150px}.nav{order:3;width:100%;height:32px;gap:16px}.user{display:none}.hero{padding:27px 22px;min-height:155px}.hero h1{font-size:24px}.main{padding:8px}.kpis{grid-template-columns:1fr}.filters{grid-template-columns:1fr}.os-grid{grid-template-columns:1fr}.import{padding:12px}.drop{height:72px}}
+</style><style>
+.drop{position:relative;cursor:pointer;overflow:hidden}
+.drop>input[type=file]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;z-index:5}
+.drop .btn{position:relative;z-index:2}
+.drop span{position:relative;z-index:1}
+.file-chooser-hidden{position:absolute!important;left:-10000px!important;top:auto!important;width:1px!important;height:1px!important;opacity:0!important;overflow:hidden!important}
+</style>
+</head><body>
+<header class="header"><img class="logo" src="data:image/png;base64,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" alt="Broadtec Tecnologia"><nav class="nav"><a class="active">Início</a><a>Análises</a><a>Relatórios</a><a>Base de Dados</a><a>Configurações</a></nav><div class="user"><div class="avatar">JS</div><div><b>Jeferson</b><span>Broadtec Tecnologia</span></div></div></header>
+<section class="hero"><div class="eyebrow">GESTÃO DE VIAGENS</div><h1>Dashboard de Custos de Viagens</h1><p>Análise completa, rápida e eficiente.</p><p style="margin-top:5px">Importe suas planilhas, visualize os principais indicadores e tenha total controle sobre os custos de viagens da sua operação.</p><div class="hero-note">Dados<br>ganham<br>direção.</div></section>
+<main class="main">
+<section class="panel import"><div class="import-copy"><div class="round">↥</div><div><h3>Importar arquivos</h3><p id="fileStatus">Selecione suas planilhas de viagens (Excel)</p></div></div><div class="drop" id="drop" tabindex="0" role="button" aria-label="Selecionar arquivos Excel"><span style="font-size:25px;color:#98a2b3">□</span><span><strong>Arraste e solte os arquivos aqui</strong><small id="fileHint">ou clique para selecionar · .xlsx, .xls, .xlsb</small></span><button type="button" class="btn primary" id="chooseFiles">Selecionar arquivos</button><input id="file" type="file" multiple accept=".xlsx,.xls,.xlsb" aria-label="Selecionar arquivos Excel" class="file-chooser-hidden"></div></section>
+<section class="panel section"><div class="section-head"><div class="section-icon">▥</div><div class="section-copy"><h2>Visão Geral</h2><p>Panorama geral dos custos de viagens analisados</p></div><div class="actions"><button class="btn" id="refresh">↻ Atualizar dados</button></div></div><div class="kpis" id="kpis"></div></section>
+<section class="panel section"><div class="section-head"><div class="section-icon">≡</div><div class="section-copy"><h2>Filtros</h2><p>Digite, pesquise e refine sua análise</p></div></div><div class="filters">
+<div class="field"><label>Período</label><select id="period"><option value="">Todos os períodos</option></select></div>
+<div class="field"><label>OS</label><input id="os" list="osList" placeholder="Digite ou selecione a OS"><datalist id="osList"></datalist></div>
+<div class="field"><label>Categoria</label><select id="category"><option value="">Todas</option></select></div>
+<div class="field"><label>Cliente</label><input id="client" placeholder="Digite o cliente"></div>
+<div class="field"><label>Local</label><input id="local" placeholder="Digite o local"></div>
+<div class="field"><label>Pesquisa geral</label><input id="search" placeholder="Pesquisar em toda a base..."></div>
+<button class="btn" id="clear" style="align-self:end">↻ Limpar filtros</button></div></section>
+<section class="analytics section"><div class="panel chart"><div class="chart-title">Custo por OS</div><div class="chart-sub">Comparativo do custo total por ordem de serviço</div><div class="os-grid" id="osChart"></div></div><div class="panel chart"><div class="chart-title">Distribuição por Categoria</div><div class="chart-sub">Participação de cada categoria no custo total</div><div id="catChart"></div></div><div class="panel chart"><div class="chart-title">Maiores Despesas</div><div class="chart-sub">Principais grupos de custo identificados</div><div id="topExpenses"></div></div></section>
+<section class="panel detail"><div class="detail-head"><div class="section-icon">▣</div><div class="section-copy"><h2>Detalhamento dos Lançamentos</h2><p id="detailCount">Lista completa conforme filtros aplicados</p></div><div class="actions"><button class="btn" id="export">⇩ Exportar Excel</button><button class="btn primary" id="report">▣ Gerar Relatório</button></div></div><div class="table-wrap"><table><thead><tr><th>OS</th><th>Aba</th><th>Cliente</th><th>Local</th><th>Período</th><th>Total Oficial</th><th>Diferença</th><th>Status</th></tr></thead><tbody id="tbody"></tbody></table></div></section>
+</main><div class="toast" id="toast"></div><script>
+const DB={url:"https://uynsbscorxqflduwntup.supabase.co",key:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV5bnNic2NvcnhxZmxkdXdudHVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUxNDk0NTgsImV4cCI6MjEwMDcyNTQ1OH0.bHLRbuBHANZwDn9z7iZVqpz-081VRT5zJnEvzaRPW4A"};
+const IMPORT_URL=DB.url+"/functions/v1/import-travel-costs-v4";
+async function dbFetch(path,options={}){const headers={apikey:DB.key,Authorization:`Bearer ${DB.key}`,"Content-Type":"application/json",...(options.headers||{})};const r=await fetch(DB.url+"/rest/v1/"+path,{...options,headers});if(!r.ok)throw new Error(`Banco ${r.status}: ${await r.text()}`);return r.status===204?null:r.json();}
+async function dbLoad(){const reports=await dbFetch("reports?select=*");const expenses=await dbFetch("expenses?select=*");return reports.map(r=>{const cats={};expenses.filter(e=>e.report_id===r.id).forEach(e=>cats[e.category]=(cats[e.category]||0)+Number(e.amount||0));const sum=Object.values(cats).reduce((a,b)=>a+b,0);return {OS:r.os,Aba:r.source_file,Arquivo:r.source_file,Cliente:r.client||"",Local:r.location||"",Periodo:r.period||"","Total Oficial":Number(r.total||0),"Soma Categorias":sum,"Diferença":Number(r.total||0)-sum,Status:r.status||"REVISAR",Categorias:cats};});}
+async function dbSaveRows(rows,sourceFile){let saved=0;for(const x of rows){const q=new URLSearchParams({os:String(x.OS||""),period:String(x.Periodo||""),source_file:String(x.Arquivo||sourceFile||"")});const found=await dbFetch("reports?select=id&"+q.toString());let reportId;if(found.length){reportId=found[0].id;await dbFetch("reports?id=eq."+encodeURIComponent(reportId),{method:"PATCH",body:JSON.stringify({client:x.Cliente,location:x.Local,period:x.Periodo,total:Number(x["Total Oficial"]||0),source_file:x.Arquivo||sourceFile,status:x.Status||"REVISAR"})});await dbFetch("expenses?report_id=eq."+encodeURIComponent(reportId),{method:"DELETE"});}else{const created=await dbFetch("reports",{method:"POST",headers:{Prefer:"return=representation"},body:JSON.stringify({os:String(x.OS||""),client:x.Cliente||null,location:x.Local||null,period:x.Periodo||null,total:Number(x["Total Oficial"]||0),source_file:x.Arquivo||sourceFile||null,status:x.Status||"REVISAR"})});reportId=created[0].id;}const expenses=Object.entries(x.Categorias||{}).filter(([,v])=>Number(v||0)!==0).map(([category,amount])=>({report_id:reportId,category,amount:Number(amount||0)}));if(expenses.length)await dbFetch("expenses",{method:"POST",body:JSON.stringify(expenses)});saved++;}return saved;}
+async function dbLogImport(sourceFile,count,total,status="success",error_message=null){await dbFetch("imports",{method:"POST",body:JSON.stringify({source_file:sourceFile,reports_count:count,total_amount:Number(total||0),status,error_message})});}
+const INITIAL=[{"OS": "9003", "Aba": "PLAN DE CUSTOS - OS - 9003", "Arquivo": "PLANILHA DE CUSTOS - OS - 9003.xlsx", "Cliente": "AMZ VBC1 FORTALEZA-CE", "Local": "Galpão Aeroporto Internacional de Fortaleza - CE", "Periodo": "15/07 a 31/07", "Total Oficial": 22981.71, "Soma Categorias": 22722.71, "Diferença": 259.0, "Status": "REVISAR", "Categorias": {"Estacionamento e Pedágio": 0.0, "Locação de Carros": 0.0, "Refeição": 2607.0, "Hospedagem": 8946.0, "Passagem": 9897.36, "Uber": 1272.350000000001, "Lavanderia": 0.0}}, {"OS": "9003", "Aba": "PLAN DE CUSTOS - OS - 9003 (2)", "Arquivo": "PLANILHA DE CUSTOS - OS - 9003.xlsx", "Cliente": "AMZ VBC1 FORTALEZA-CE", "Local": "Galpão Aeroporto Internacional de Fortaleza - CE", "Periodo": "21/09 A 08/10", "Total Oficial": 14771.23, "Soma Categorias": 14771.23, "Diferença": 0.0, "Status": "OK", "Categorias": {"Estacionamento e Pedágio": 0.0, "Locação de Carros": 0.0, "Refeição": 1400.0, "Hospedagem": 10013.0, "Passagem": 3358.23, "Uber": 0.0, "Lavanderia": 0.0}}, {"OS": "9043", "Aba": "PLAN DE CUSTOS - OS - 9043", "Arquivo": "PLANILHA DE CUSTOS - OS - 9043.xlsx", "Cliente": "CONTRATO 5210_OS 9043-P26-161 SONDOTÉCNICA - INSTALAÇÃO CÂMERA IGARAPE MG", "Local": "km 525 da Fernao dias , no município de Igarapé - MG", "Periodo": "17/008 A 19/08", "Total Oficial": 1616.03, "Soma Categorias": 832.96, "Diferença": 783.0699999999999, "Status": "REVISAR", "Categorias": {"Estacionamento e Pedágio": 132.96, "Locação de Carros": 0.0, "Refeição": 210.0, "Hospedagem": 490.0, "Passagem": 0.0, "Uber": 0.0, "Lavanderia": 0.0}}, {"OS": "5911", "Aba": "PLAN DE CUSTOS - OS - 5911(JUL)", "Arquivo": "PLANILHA DE CUSTOS - PALMAS .xlsb(1).xlsx", "Cliente": "CORTEVA - O.S. 5911", "Local": "PALMAS", "Periodo": "17/07 A 20/07", "Total Oficial": 9239.78, "Soma Categorias": 8132.78, "Diferença": 1107.000000000001, "Status": "REVISAR", "Categorias": {"Estacionamento e Pedágio": 0.0, "Locação de Carros": 0.0, "Refeição": 310.0, "Hospedagem": 540.0, "Passagem": 6880.7, "Uber": 402.08, "Lavanderia": 0.0}}, {"OS": "5911", "Aba": "PLAN DE CUSTOS - OS - 5911(FEV)", "Arquivo": "PLANILHA DE CUSTOS - PALMAS .xlsb(1).xlsx", "Cliente": "CORTEVA - O.S. 5911", "Local": "PALMAS", "Periodo": "23/02 A 21/03", "Total Oficial": 24237.56, "Soma Categorias": 19861.41, "Diferença": 4376.150000000001, "Status": "REVISAR", "Categorias": {"Estacionamento e Pedágio": 60.0, "Locação de Carros": 0.0, "Refeição": 3090.0, "Hospedagem": 8788.0, "Passagem": 7270.98, "Uber": 652.4300000000001, "Lavanderia": 0.0}}, {"OS": "5911", "Aba": "PLAN DE CUSTOS - OS - 5911(JAN)", "Arquivo": "PLANILHA DE CUSTOS - PALMAS .xlsb(1).xlsx", "Cliente": "CORTEVA - O.S. 5911", "Local": "PALMAS", "Periodo": "20/01 a 14/02", "Total Oficial": 25374.0, "Soma Categorias": 20732.62, "Diferença": 4641.380000000001, "Status": "REVISAR", "Categorias": {"Estacionamento e Pedágio": 0.0, "Locação de Carros": 0.0, "Refeição": 3150.0, "Hospedagem": 9664.0, "Passagem": 7255.780000000001, "Uber": 662.8399999999999, "Lavanderia": 0.0}}];
+let data=INITIAL.map(x=>({...x,Categorias:{...x.Categorias}}));
+let lastFiltered=[];
+const cats=["Estacionamento e Pedágio","Locação de Carros","Refeição","Hospedagem","Passagem","Uber","Lavanderia"];
+const money=v=>new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(Number(v)||0);
+const toastEl=document.getElementById("toast");
+function toast(msg){toastEl.textContent=msg;toastEl.classList.add("show");clearTimeout(window.__toast);window.__toast=setTimeout(()=>toastEl.classList.remove("show"),2400)}
+function rebuildOptions(){
+ const os=[...new Set(data.map(x=>x.OS).filter(Boolean))].sort();
+ const periods=[...new Set(data.map(x=>x.Periodo).filter(x=>x&&x!=="nan"))].sort();
+ document.getElementById("osList").innerHTML=os.map(x=>`<option value="${x}">`).join("");
+ document.getElementById("period").innerHTML='<option value="">Todos os períodos</option>'+periods.map(x=>`<option>${x}</option>`).join("");
+ document.getElementById("category").innerHTML='<option value="">Todas</option>'+cats.map(x=>`<option>${x}</option>`).join("");
+}
+function filtered(){
+ const os=document.getElementById("os").value.trim().toLowerCase(), p=document.getElementById("period").value;
+ const c=document.getElementById("category").value, client=document.getElementById("client").value.trim().toLowerCase();
+ const local=document.getElementById("local").value.trim().toLowerCase(), q=document.getElementById("search").value.trim().toLowerCase();
+ return data.filter(x=>{
+  const hay=[x.OS,x.Aba,x.Arquivo,x.Cliente,x.Local,x.Periodo,x.Status].join(" ").toLowerCase();
+  const catOk=!c || Number(x.Categorias?.[c]||0)>0;
+  return (!os||String(x.OS).toLowerCase().includes(os))&&(!p||x.Periodo===p)&&catOk&&
+   (!client||String(x.Cliente).toLowerCase().includes(client))&&(!local||String(x.Local).toLowerCase().includes(local))&&(!q||hay.includes(q));
+ });
+}
+function render(){
+ const rows=filtered(); lastFiltered=rows;
+ const total=rows.reduce((s,x)=>s+Number(x["Total Oficial"]||0),0), osSet=[...new Set(rows.map(x=>x.OS))];
+ const pending=rows.filter(x=>x.Status!=="OK").length;
+ document.getElementById("kpis").innerHTML=`
+ <div class="kpi"><div class="kpi-top"><span class="kpi-label">Custo Total</span><span class="kpi-icon">◉</span></div><div class="kpi-value">${money(total)}</div><div class="kpi-sub">Base filtrada</div></div>
+ <div class="kpi"><div class="kpi-top"><span class="kpi-label">Total de OS</span><span class="kpi-icon">▤</span></div><div class="kpi-value">${osSet.length}</div><div class="kpi-sub">OS encontradas</div></div>
+ <div class="kpi"><div class="kpi-top"><span class="kpi-label">Ticket Médio</span><span class="kpi-icon">⌁</span></div><div class="kpi-value">${money(osSet.length?total/osSet.length:0)}</div><div class="kpi-sub">Custo médio por OS</div></div>
+ <div class="kpi"><div class="kpi-top"><span class="kpi-label">Pendências</span><span class="kpi-icon">!</span></div><div class="kpi-value">${pending}</div><div class="kpi-sub">Itens para revisão</div></div>`;
+ const osAgg={};rows.forEach(x=>osAgg[x.OS]=(osAgg[x.OS]||0)+Number(x["Total Oficial"]||0));
+ const osArr=Object.entries(osAgg).sort((a,b)=>b[1]-a[1]),mx=osArr[0]?.[1]||1;
+ document.getElementById("osChart").innerHTML=osArr.length?osArr.map(([os,v])=>`<div class="os-card" onclick="document.getElementById('os').value='${os}';render()"><div class="os-head"><span>OS ${os}</span><span class="dot"></span></div><div class="os-value">${money(v)}</div><div class="mini-track"><i style="width:${v/mx*100}%"></i></div><div class="os-foot"><span>${total?(v/total*100).toFixed(1):0}% do total</span><span>Detalhar →</span></div></div>`).join(""):'<div style="color:#98a2b3;font-size:11px">Nenhum resultado.</div>';
+ const catAgg={};rows.forEach(x=>Object.entries(x.Categorias||{}).forEach(([k,v])=>catAgg[k]=(catAgg[k]||0)+Number(v||0)));
+ const ca=Object.entries(catAgg).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]),ct=ca.reduce((s,x)=>s+x[1],0);
+ document.getElementById("catChart").innerHTML=ca.map(([k,v])=>`<div class="cat-row"><div class="cat-name"><span>${k}</span><b>${ct?(v/ct*100).toFixed(1):0}%</b></div><div class="track"><i style="width:${ct?v/ct*100:0}%"></i></div><div class="cat-value">${money(v)}</div></div>`).join("")||'<div style="color:#98a2b3;font-size:11px">Nenhum resultado.</div>';
+ document.getElementById("topExpenses").innerHTML=ca.slice(0,5).map(([k,v],i)=>`<div class="expense"><span class="rank">${i+1}</span><div class="expense-main"><b>${k}</b><span>Base filtrada</span></div><span class="expense-val">${money(v)}</span></div>`).join("")||'<div style="color:#98a2b3;font-size:11px">Nenhum resultado.</div>';
+ document.getElementById("tbody").innerHTML=rows.map(x=>`<tr><td><b>OS ${x.OS}</b></td><td>${x.Aba}</td><td>${x.Cliente||"—"}</td><td>${x.Local||"—"}</td><td>${x.Periodo||"—"}</td><td>${money(x["Total Oficial"])}</td><td>${money(x.Diferença)}</td><td><span class="status ${x.Status==="OK"?"ok":"warn"}">${x.Status==="OK"?"Conciliado":"Revisar"}</span></td></tr>`).join("")||'<tr><td colspan="8" style="text-align:center;color:#98a2b3;padding:24px">Nenhum lançamento encontrado.</td></tr>';
+ document.getElementById("detailCount").textContent=`${rows.length} lançamento(s) encontrado(s) conforme os filtros aplicados`;
+}
+function clearFilters(){["os","client","local","search"].forEach(id=>document.getElementById(id).value="");document.getElementById("period").value="";document.getElementById("category").value="";render();toast("Filtros limpos.");}
+function num(v){
+ const n=Number(v); if(Number.isFinite(n)) return n;
+ if(typeof v==='string'){
+  const t=v.replace(/R\$|\s/g,'').replace(/\./g,'').replace(',','.');
+  const x=Number(t); if(Number.isFinite(x)) return x;
+ }
+ return 0;
+}
+function findLastNumber(row){
+ for(let i=row.length-1;i>=0;i--){const n=num(row[i]);if(n!==0||String(row[i]??'').trim()==='0')return n}
+ return 0;
+}
+function normalizeLabel(v){return String(v??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim().toUpperCase()}
+async function fileToBase64(file){
+ return await new Promise((resolve,reject)=>{
+  const reader=new FileReader();
+  reader.onerror=()=>reject(new Error("Não foi possível ler o arquivo selecionado."));
+  reader.onload=()=>resolve(String(reader.result||""));
+  reader.readAsDataURL(file);
+ });
+}
+async function uploadExcelFile(file){
+ const dataUrl=await fileToBase64(file);
+ const ctrl=new AbortController();
+ const timer=setTimeout(()=>ctrl.abort(),90000);
+ try{
+  const r=await fetch(IMPORT_URL,{
+   method:"POST",
+   headers:{apikey:DB.key,Authorization:"Bearer "+DB.key,"Content-Type":"application/json"},
+   body:JSON.stringify({filename:file.name,dataBase64:dataUrl}),
+   signal:ctrl.signal
+  });
+  let result=null; try{result=await r.json();}catch(_){result=null;}
+  if(!r.ok || !result?.ok){
+   const detail=result?.error||(`Falha HTTP ${r.status}`);
+   throw new Error(detail);
+  }
+  return result;
+ }catch(e){
+  if(e.name==='AbortError') throw new Error("Tempo limite de 90 segundos excedido ao enviar o arquivo.");
+  throw e;
+ }finally{clearTimeout(timer)}
+}
+
+async function loadLocalXLSX(){
+ if(typeof XLSX!="undefined") return XLSX;
+ await new Promise((resolve,reject)=>{
+  const urls=[
+   "https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js",
+   "https://cdn.jsdelivr.net/npm/xlsx-republish@0.20.3/xlsx.js"
+  ];
+  let i=0;
+  const next=()=>{
+   if(typeof XLSX!="undefined") return resolve();
+   if(i>=urls.length) return reject(new Error("Biblioteca Excel indisponível no navegador."));
+   const sc=document.createElement("script");
+   sc.src=urls[i++];
+   sc.async=true;
+   sc.onload=()=>typeof XLSX!=="undefined"?resolve():next();
+   sc.onerror=next;
+   document.head.appendChild(sc);
+  };
+  next();
+ });
+ return XLSX;
+}
+function localFindTotal(matrix, patterns){
+ for(const row of matrix){
+  const joined=row.map(normalizeLabel).join(" | ");
+  if(patterns.some(p=>p.test(joined))) return findLastNumber(row);
+ }
+ return 0;
+}
+function localValueAfterLabel(matrix, labels){
+ const targets=new Set(labels.map(normalizeLabel));
+ for(const row of matrix){
+  for(let i=0;i<row.length;i++) if(targets.has(normalizeLabel(row[i]))) return String(row[i+1]??"").trim();
+ }
+ return "";
+}
+function localDetectOS(filename,sheet,matrix){
+ const text=[filename,sheet,...matrix.flat()].map(v=>String(v??"")).join(" ");
+ const m=text.match(/(?:O\.?\s*S\.?|OS)\s*[-:]?\s*(\d{3,})/i);
+ return m?.[1]||"";
+}
+function localParseSheet(matrix,filename,sheet){
+ const os=localDetectOS(filename,sheet,matrix);
+ const client=localValueAfterLabel(matrix,["CLIENTE"]);
+ const local=localValueAfterLabel(matrix,["LOCAL"]);
+ const period=localValueAfterLabel(matrix,["PERÍODO","PERIODO"]);
+ const cats={
+  "Estacionamento e Pedágio":localFindTotal(matrix,[/TOTAL.*ESTACIONAMENTO.*PEDAGIO/]),
+  "Locação de Carros":localFindTotal(matrix,[/TOTAL.*(?:DEC)?LOCACAO.*CARR+ROS/]),
+  "Refeição":localFindTotal(matrix,[/TOTAL.*REFEICAO/]),
+  "Hospedagem":localFindTotal(matrix,[/TOTAL.*HOSPEDAGEM/]),
+  "Passagem":localFindTotal(matrix,[/TOTAL.*PASSAGEM/]),
+  "Uber":localFindTotal(matrix,[/TOTAL.*UBER/]),
+  "Lavanderia":localFindTotal(matrix,[/TOTAL.*LAVANDERIA/])
+ };
+ let official=localFindTotal(matrix,[/TOTAL.*CUSTOS.*GERAIS/]);
+ const sum=Object.values(cats).reduce((a,b)=>a+Number(b||0),0);
+ if(!official) official=sum;
+ return {OS:os,Aba:sheet,Arquivo:filename,Cliente:client,Local:local,Periodo:period,"Total Oficial":official,"Soma Categorias":sum,"Diferença":official-sum,Status:Math.abs(official-sum)<0.01?"OK":"REVISAR",Categorias:cats};
+}
+async function saveLocalParsed(filename, parsed){
+ const rows=parsed.filter(x=>x.OS);
+ if(!rows.length) throw new Error("Nenhuma OS foi identificada no arquivo.");
+ let saved=0; const errors=[];
+ for(const row of rows){
+  const importKey=[row.OS,row.Periodo,filename].join("||");
+  const body={os:row.OS,client:row.Cliente||null,location:row.Local||null,period:row.Periodo||"",total:Number(row["Total Oficial"]||0),source_file:filename,status:row.Status,import_key:importKey};
+  const r=await dbFetch("reports?on_conflict=import_key",{method:"POST",headers:{Prefer:"resolution=merge-duplicates,return=representation"},body:JSON.stringify(body)}).catch(()=>null);
+  let report=r?.[0];
+  if(!report){
+   const existing=await dbFetch("reports?import_key=eq."+encodeURIComponent(importKey)+"&select=id");
+   if(existing?.[0]?.id){
+    await dbFetch("reports?id=eq."+encodeURIComponent(existing[0].id),{method:"PATCH",headers:{Prefer:"return=representation"},body:JSON.stringify(body)});
+    report={id:existing[0].id};
+   }
+  }
+  if(!report){errors.push("OS "+row.OS+": não foi possível salvar o relatório.");continue;}
+  try{await dbFetch("expenses?report_id=eq."+encodeURIComponent(report.id),{method:"DELETE"});}catch(_){ }
+  const exp=Object.entries(row.Categorias||{}).filter(([_,v])=>Number(v||0)!==0).map(([category,amount])=>({report_id:report.id,category,description:"Total da categoria",amount:Number(amount||0)}));
+  if(exp.length) try{await dbFetch("expenses",{method:"POST",headers:{Prefer:"return=minimal"},body:JSON.stringify(exp)});}catch(e){errors.push("OS "+row.OS+": "+String(e.message||e));continue;}
+  saved++;
+ }
+ await dbFetch("imports",{method:"POST",headers:{Prefer:"return=minimal"},body:JSON.stringify({source_file:filename,reports_count:saved,total_amount:rows.reduce((s,r)=>s+Number(r["Total Oficial"]||0),0),status:errors.length?"partial":"success",error_message:errors.length?errors.join(" | ").slice(0,4000):null})});
+ return {ok:saved>0,saved,errors,totalImported:rows.reduce((s,r)=>s+Number(r["Total Oficial"]||0),0),parsed:rows};
+}
+async function localFallbackImport(file){
+ const lib=await loadLocalXLSX();
+ const buffer=await file.arrayBuffer();
+ const wb=lib.read(buffer,{type:"array",cellDates:true,cellNF:true});
+ const parsed=[];
+ for(const sheet of wb.SheetNames){
+  const matrix=lib.utils.sheet_to_json(wb.Sheets[sheet],{header:1,defval:"",raw:true});
+  if(matrix.length) parsed.push(localParseSheet(matrix,file.name,sheet));
+ }
+ return await saveLocalParsed(file.name,parsed);
+}
+
+async function importFiles(files){
+ const valid=files.filter(f=>/\.(xlsx|xls|xlsb)$/i.test(f.name));
+ if(!valid.length){toast("Selecione arquivos Excel: .xlsx, .xls ou .xlsb.");return;}
+ const statusEl=document.getElementById('fileStatus'), hintEl=document.getElementById('fileHint');
+ let saved=0; const errors=[];
+ statusEl.textContent=`Preparando ${valid.length} arquivo(s)...`;
+ hintEl.textContent=valid.map(f=>`${f.name} (${Math.round(f.size/1024)} KB)`).join(" • ");
+ try{
+  for(let i=0;i<valid.length;i++){
+   const file=valid[i];
+   statusEl.textContent=`Lendo ${file.name} (${i+1}/${valid.length})...`;
+   try{
+    let result;
+    try{ result=await uploadExcelFile(file); }
+    catch(serverError){
+     statusEl.textContent=`Processamento online indisponível. Processando ${file.name} localmente...`;
+     result=await localFallbackImport(file);
+    }
+    saved+=Number(result.saved||0);
+    if(Array.isArray(result.errors)&&result.errors.length) errors.push(...result.errors);
+   }catch(e){errors.push(file.name+": "+String(e.message||e));}
+  }
+  data=await dbLoad(); rebuildOptions(); render();
+  if(errors.length && saved===0){
+   statusEl.textContent="Falha na importação. Nenhum relatório novo foi salvo.";
+   toast(errors[0]);
+  }else if(errors.length){
+   statusEl.textContent=`Importação parcial: ${saved} relatório(s) salvo(s).`;
+   toast(`Importação parcial: ${saved} relatório(s) salvo(s).`);
+  }else{
+   statusEl.textContent=`Importação concluída: ${saved} relatório(s) salvo(s) no banco.`;
+   toast(`Importação concluída: ${saved} relatório(s) salvo(s).`);
+  }
+ }catch(e){
+  console.error(e); statusEl.textContent="Não foi possível concluir a importação."; toast(String(e.message||e));
+ }finally{fileInput.value="";}
+}
+
+async function loadFromDatabase(){try{const rows=await dbLoad();if(rows.length){data=rows;rebuildOptions();render();document.getElementById('fileStatus').textContent=`Base online carregada • ${rows.length} relatório(s) salvo(s)`;}}catch(e){console.warn('Base online indisponível; usando base local.',e);toast('Base online indisponível. Dados locais carregados.');}}
+
+const fileInput=document.getElementById("file");
+const drop=document.getElementById("drop");
+const chooseFiles=document.getElementById("chooseFiles");
+chooseFiles.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();fileInput.value="";requestAnimationFrame(()=>fileInput.click());});
+drop.addEventListener("click",e=>{if(e.target===chooseFiles)return;fileInput.value="";requestAnimationFrame(()=>fileInput.click());});
+drop.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();fileInput.value="";fileInput.click();}});
+fileInput.addEventListener("change",e=>{const files=[...e.target.files];if(files.length)importFiles(files);});
+["dragenter","dragover"].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();e.stopPropagation();drop.classList.add("drag")}));
+["dragleave","drop"].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();e.stopPropagation();drop.classList.remove("drag")}));
+drop.addEventListener("drop",e=>{const files=[...e.dataTransfer.files].filter(f=>/\.(xlsx|xls|xlsb)$/i.test(f.name));if(files.length)importFiles(files);else toast("Selecione arquivos Excel: .xlsx, .xls ou .xlsb.");});
+["os","client","local","search"].forEach(id=>document.getElementById(id).addEventListener("input",render));["period","category"].forEach(id=>document.getElementById(id).addEventListener("change",render));
+document.getElementById("clear").addEventListener("click",clearFilters);
+document.getElementById("refresh").addEventListener("click",async()=>{try{data=await dbLoad();rebuildOptions();render();toast("Dados atualizados do banco.");}catch(e){rebuildOptions();render();toast("Não foi possível atualizar a base online.");}});
+async function loadXLSXForExport(){
+ if(typeof XLSX!=="undefined") return;
+ await new Promise((resolve,reject)=>{
+  const urls=["https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js","https://cdn.jsdelivr.net/npm/xlsx-republish@0.20.3/dist/xlsx.full.min.js"];
+  let i=0;
+  const next=()=>{
+   if(typeof XLSX!=="undefined") return resolve();
+   if(i>=urls.length) return reject(new Error("Biblioteca de exportação Excel indisponível."));
+   const sc=document.createElement("script");sc.src=urls[i++];sc.onload=()=>resolve();sc.onerror=next;document.head.appendChild(sc);
+  }; next();
+ });
+}
+document.getElementById("export").addEventListener("click",async()=>{
+ if(!lastFiltered.length){toast("Não há dados para exportar.");return}
+ try{
+  await loadXLSXForExport();
+  const rows=lastFiltered.map(x=>({OS:x.OS,Aba:x.Aba,Cliente:x.Cliente,Local:x.Local,Periodo:x.Periodo,"Total Oficial":x["Total Oficial"],"Soma Categorias":x["Soma Categorias"],Diferença:x.Diferença,Status:x.Status}));
+  const ws=XLSX.utils.json_to_sheet(rows),wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"Custos Filtrados");XLSX.writeFile(wb,"custos-viagens-filtrados.xlsx");toast("Excel exportado.");
+ }catch(e){toast(String(e.message||e));}
+});
+document.getElementById("report").addEventListener("click",()=>{
+ const win=window.open("","_blank");if(!win){toast("Permita pop-ups para gerar o relatório.");return}
+ win.document.write(`<html><head><title>Relatório de Custos de Viagens</title><style>body{font-family:Arial;padding:35px;color:#17202a}table{width:100%;border-collapse:collapse;margin-top:20px}th,td{padding:8px;border-bottom:1px solid #ddd;text-align:left;font-size:11px}th{background:#f5f5f5}</style></head><body><h1>Relatório de Custos de Viagens — Broadtec</h1><p>Gerado em ${new Date().toLocaleString("pt-BR")}</p><p><b>Custo filtrado:</b> ${money(lastFiltered.reduce((s,x)=>s+Number(x["Total Oficial"]||0),0))}</p><table><tr><th>OS</th><th>Aba</th><th>Cliente</th><th>Local</th><th>Total</th><th>Status</th></tr>${lastFiltered.map(x=>`<tr><td>${x.OS}</td><td>${x.Aba}</td><td>${x.Cliente||""}</td><td>${x.Local||""}</td><td>${money(x["Total Oficial"])}</td><td>${x.Status}</td></tr>`).join("")}</table><script>window.onload=()=>window.print()<\/script></body></html>`);win.document.close();
+});
+rebuildOptions();render();loadFromDatabase();
+</script></body></html>
